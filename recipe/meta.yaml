@@ -11,7 +11,7 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -42,6 +42,7 @@ about:
   home: https://github.com/aio-libs/propcache
   summary: Accelerated property cache
   license: Apache-2.0
+  license_family: Apache
   license_file:
     - LICENSE
     - NOTICE
