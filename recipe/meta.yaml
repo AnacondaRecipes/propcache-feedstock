@@ -46,6 +46,8 @@ about:
   license_file:
     - LICENSE
     - NOTICE
+  dev_url: https://github.com/aio-libs/propcache
+  doc_url: https://propcache.readthedocs.io
 
 extra:
   recipe-maintainers:
