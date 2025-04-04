@@ -21,6 +21,7 @@ requirements:
     - python
     - cython
     - expandvars
+    - wheel
     - setuptools >=47
     - tomli  # [py<311]
     - pip
