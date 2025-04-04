@@ -1,5 +1,5 @@
 {% set name = "propcache" %}
-{% set version = "0.2.0" %}
+{% set version = "0.3.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,35 +7,40 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/propcache-{{ version }}.tar.gz
-  sha256: df81779732feb9d01e5d513fad0122efb3d53bbc75f61b2a4f29a020bc985e70
+  sha256: 40d980c33765359098837527e18eddefc9a24cea5b45e078a7f3bb5b032c6ecf
 
 build:
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
     - python
+    - cython
     - expandvars
     - setuptools >=47
     - tomli  # [py<311]
-    - cython
     - pip
   run:
     - python
 
 test:
+  source_files:
+    - tests
+    - pytest.ini
   imports:
     - propcache
   commands:
     - pip check
+    - pytest -v
   requires:
     - pip
+    - pytest
+    - pytest-cov >=2.3.1
+    - pytest-xdist
 
 about:
   home: https://github.com/aio-libs/propcache
