@@ -16,10 +16,11 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
     - python
-    - cython >=3.0.0
+    - cython >=3.1.4
     - expandvars
     - setuptools >=47
     - tomli  # [py<311]
@@ -33,14 +34,14 @@ test:
     - pytest.ini
   imports:
     - propcache
-  commands:
-    - pip check
-    - pytest -v
   requires:
     - pip
     - pytest
     - pytest-cov >=2.3.1
     - pytest-xdist
+  commands:
+    - pip check
+    - pytest -v
 
 about:
   home: https://github.com/aio-libs/propcache
