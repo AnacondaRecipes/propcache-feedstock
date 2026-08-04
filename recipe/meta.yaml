@@ -1,5 +1,5 @@
 {% set name = "propcache" %}
-{% set version = "0.4.1" %}
+{% set version = "0.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/propcache-{{ version }}.tar.gz
-  sha256: f48107a8c637e80362555f37ecf49abe20370e557cc4ab374f04ec4423c97c3d
+  sha256: 01c4fc7480cd0598bb4b57022df55b9ca296da7fc5a8760bd8451a7e63a7d427
 
 build:
   number: 0
@@ -22,8 +22,7 @@ requirements:
     - python
     - cython >=3.1.4
     - expandvars
-    - wheel
-    - setuptools >=47
+    - setuptools >=82.0.1
     - tomli  # [py<311]
     - pip
   run:
