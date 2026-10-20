@@ -10,7 +10,7 @@ source:
   sha256: 01c4fc7480cd0598bb4b57022df55b9ca296da7fc5a8760bd8451a7e63a7d427
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<310]
 
@@ -37,9 +37,12 @@ test:
     - propcache
   requires:
     - pip
-    - pytest >=8.4.2
+    # py3.15 pytest-xdist 3.8 requires pytest<9. Uncapped, the solver
+    # picks pytest 9 and falls back to pytest-xdist 2.5, which pulls
+    # pytest-forked; pip check then fails (forked requires py, no py3.15 build).
+    - pytest >=8.4.2,<9
     - pytest-cov >=2.3.1
-    - pytest-xdist
+    - pytest-xdist >=3
   commands:
     - pip check
     - pytest -v
